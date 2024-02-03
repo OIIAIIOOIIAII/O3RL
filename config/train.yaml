@@ -1,0 +1,72 @@
+# @package _global_
+name: train_${env.name}_${seed}
+
+path: D:/ACMMMSys/onestep-rl
+
+defaults:
+  - beta: bc
+  - q: sarsa
+  - pi: reverse_kl
+  - baseline: value_sample
+
+# which learners to train
+train_beta: true
+train_q: true
+train_pi: true
+train_baseline: false
+
+# model params
+beta:
+  load_path: null
+  model_save_path: ${path}/submission/test4/${name}_beta
+q:
+  load_path: null
+  model_save_path: ${path}/submission/test4/${name}_q
+pi:
+  load_path: null
+  model_save_path: ${path}/submission/test4/${name}_pi
+baseline:
+  load_path: null
+  model_save_path: ${path}/submission/test4/${name}_baseline
+
+# train loop hyperparameters
+beta_steps: 0
+baseline_steps: 0
+steps: 1
+q_steps: 5001
+pi_steps: 15001
+
+beta_save_freq: 100
+pi_save_freq: 100
+q_save_freq: 100
+log_freq: 2e2
+
+eval_samples: 1000
+eval_episodes: 1
+log_dir: ${path}/logs/${name}
+
+seed: 0
+device: cuda
+
+# data parameters
+#data_path: ${path}/data/${env.name}.pt
+data_path: ${path}/data
+env_type: d4rl
+env:
+  name: halfcheetah-medium-v2
+discount: 0.99
+state_dim: 150
+action_dim: 1
+
+# hydra parameters
+hydra/hydra_logging: none
+hydra/job_logging: none
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+  job:
+    config:
+      override_dirname:
+        exclude_keys:
+          - name

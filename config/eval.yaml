@@ -1,0 +1,27 @@
+# @package _global_
+name: eval
+
+path: ???
+pi_path: ???
+q_path: ???
+
+env_name: halfcheetah-medium-v2
+pi_name: beta
+
+seed: 0
+n_episodes: 100
+
+n_bcq_samples: 10
+
+# hydra parameters
+hydra/hydra_logging: none
+hydra/job_logging: none
+hydra:
+  output_subdir: null
+  run:
+    dir: .
+  job:
+    config:
+      override_dirname:
+        exclude_keys:
+          - name
