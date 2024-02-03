@@ -33,7 +33,7 @@ baseline:
 beta_steps: 0
 baseline_steps: 0
 steps: 1
-q_steps: 5001
+q_steps: 0
 pi_steps: 15001
 
 beta_save_freq: 100
